@@ -156,7 +156,7 @@ public class MainController extends Connector implements Initializable {
 	
 	public void LeggInnØvelseMedApparat() throws SQLException{
 		Ovelse ovelse = new Ovelse();
-		ovelse.ovelseMedApparat(this.øvelseMedApparatNavn, this.øvelseMedApparatApparatNavn, this.øvelseMedApparatGruppeNavn, this.øvelseMedApparatBeskrivelse, apparatOutput);
+		ovelse.ovelseMedApparat(this.øvelseMedApparatNavn, this.øvelseMedApparatApparatNavn, this.øvelseMedApparatGruppeNavn, this.øvelseMedApparatBeskrivelse, this.apparatOutput);
 	}
 	
 	@FXML
@@ -165,7 +165,8 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	public void LeggInnØvelseUtenApparat() throws SQLException{
-		
+		Ovelse ovelse = new Ovelse();
+		ovelse.ovelseUtenApparat(this.øvelseUtenApparatNavn, this.øvelseUtenApparatBeskrivelse, this.øvelseUtenApparatGruppeNavn);
 	}
 	
 	//APPARAT
