@@ -8,52 +8,71 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Trening">
-   <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Trening">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="treningID" layoutX="209.0" layoutY="46.0" promptText="TreningID" />
-                        <TextField fx:id="dato" layoutX="209.0" layoutY="89.0" promptText="Dato (år-mnd-dag)" />
-                        <TextField fx:id="tidspunkt" layoutX="209.0" layoutY="128.0" prefHeight="27.0" prefWidth="167.0" promptText="Tidspunkt(time:min:sek)" />
-                        <TextField fx:id="varighet" layoutX="209.0" layoutY="170.0" prefHeight="27.0" prefWidth="167.0" promptText="Varighet" />
-                        <TextField fx:id="personligForm" layoutX="209.0" layoutY="214.0" prefHeight="27.0" prefWidth="167.0" promptText="Personlig Form (1-10)" />
-                        <TextField fx:id="prestasjon" layoutX="209.0" layoutY="257.0" prefHeight="27.0" prefWidth="167.0" promptText="Prestasjon (1-10)" />
-                        <Button fx:id="leggInnTrening" layoutX="234.0" layoutY="302.0" mnemonicParsing="false" text="Legg inn trening" />
-                        <Label fx:id="lagtTilOutput" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="14.0" opacity="0.0" prefHeight="24.0" prefWidth="149.0" text="Output" textAlignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+	<children>
+		<TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Trening">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+							<children>
+								<TextField fx:id="dato" layoutX="209.0" layoutY="47.0" promptText="Dato (år-mnd-dag)" />
+								<TextField fx:id="tidspunkt" layoutX="209.0" layoutY="93.0" prefHeight="27.0" prefWidth="167.0" promptText="Tidspunkt(time:min:sek)" />
+								<TextField fx:id="varighet" layoutX="209.0" layoutY="139.0" prefHeight="27.0" prefWidth="167.0" promptText="Varighet" />
+								<TextField fx:id="personligForm" layoutX="209.0" layoutY="184.0" prefHeight="27.0" prefWidth="167.0" promptText="Personlig Form (1-10)" />
+								<TextField fx:id="prestasjon" layoutX="209.0" layoutY="229.0" prefHeight="27.0" prefWidth="167.0" promptText="Prestasjon (1-10)" />
+								<Button fx:id="leggInnTrening" layoutX="234.0" layoutY="282.0" mnemonicParsing="false" text="Legg inn trening" />
+								<Label fx:id="datoOutput" contentDisplay="CENTER" layoutX="387.0" layoutY="49.0" opacity="0.0" prefHeight="24.0" prefWidth="192.0" text="datoOutput" textFill="#d71818">
+									<font>
+										<Font name="Arial" size="10.0" />
+									</font>
+								</Label>
+                        <Label fx:id="tidspunktOutput" layoutX="387.0" layoutY="95.0" opacity="0.0" prefHeight="24.0" prefWidth="192.0" text="tidspunktOutput" textFill="#d71818">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Arial" size="10.0" />
                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Treningsøkt">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab text="Resultatlogg">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Øvelsegruppe">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Treningsvarighet">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+                        <Label fx:id="varighetOutput" contentDisplay="CENTER" layoutX="387.0" layoutY="141.0" opacity="0.0" prefHeight="24.0" prefWidth="192.0" text="varighetOutput" textFill="#d71818">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="personligFormOutput" contentDisplay="CENTER" layoutX="387.0" layoutY="186.0" opacity="0.0" prefHeight="24.0" prefWidth="192.0" text="personligFormOutput" textFill="#d71818">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prestasjonOutput" contentDisplay="CENTER" layoutX="387.0" layoutY="231.0" opacity="0.0" prefHeight="24.0" prefWidth="192.0" text="prestasjonOutput" textFill="#d71818">
+                           <font>
+                              <Font name="Arial" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="generalOutput" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="325.0" prefHeight="28.0" prefWidth="437.0" textAlignment="CENTER" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Treningsøkt">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab text="Resultatlogg">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab text="Øvelsegruppe">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+					</content>
+				</Tab>
+				<Tab text="Treningsvarighet">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
 </AnchorPane>
-

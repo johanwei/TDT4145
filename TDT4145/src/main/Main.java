@@ -22,13 +22,4 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	/*
-	public void test() throws SQLException {
-		 Statement stmt = conn.createStatement();
-		 ResultSet res = stmt.executeQuery("SELECT * FROM Ovelse");
-		 if (res.next()) {
-			 System.out.println(res.getString("OvelseNavn"));
-		 }
-	}*/
-	//halla da
 }
