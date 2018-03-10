@@ -12,7 +12,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("../fxml/Trening.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../fxml/Main.fxml"));
 		primaryStage.setTitle("Trening");
 		Scene scene = new Scene(root, 600, 400);
 		primaryStage.setScene(scene);
@@ -30,5 +30,5 @@ public class Main extends Application {
 			 System.out.println(res.getString("OvelseNavn"));
 		 }
 	}*/
-	
+	//halla da
 }
