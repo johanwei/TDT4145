@@ -98,13 +98,13 @@ public class MainController extends Connector implements Initializable {
 			}});
 		øvelseMedApparatButton.setOnAction((event) -> { 
 			try {
-				handleTrening(event);
+				handleØvelseMedApparat(event);
 			} catch (IOException | SQLException e) {
 				e.printStackTrace();
 			}});
 		øvelseUtenApparatButton.setOnAction((event) -> { 
 			try {
-				handleTrening(event);
+				handleØvelseUtenApparat(event);
 			} catch (IOException | SQLException e) {
 				e.printStackTrace();
 			}});
@@ -132,6 +132,42 @@ public class MainController extends Connector implements Initializable {
 		trening.leggInnTrening(this.treningID, this.dato, this.tidspunkt, this.varighet, this.personligForm, this.prestasjon, this.datoOutput, this.tidspunktOutput, this.varighetOutput, this.personligFormOutput, this.prestasjonOutput, this.generalOutput);
 	}
 	
+	//TRENINGSØKT
+	
+	
+	//RESULTATLOGG
+	
+	
+	//ØVELSEGRUPPE
+	@FXML
+	private void handleØvelseGruppeNavn(ActionEvent event) throws IOException, SQLException {
+		LeggInnØvelseGruppeNavn();
+	}
+	
+	public void LeggInnØvelseGruppeNavn() throws SQLException{
+		Ovelse ovelse = new Ovelse();
+		ovelse.ovelseGruppe(this.øvelseGruppeNavn);
+	}
+	
+	@FXML
+	private void handleØvelseMedApparat(ActionEvent event) throws IOException, SQLException {
+		LeggInnØvelseMedApparat();
+	}
+	
+	public void LeggInnØvelseMedApparat() throws SQLException{
+		Ovelse ovelse = new Ovelse();
+		ovelse.ovelseMedApparat(this.øvelseMedApparatNavn, this.øvelseMedApparatApparatNavn, this.øvelseMedApparatGruppeNavn, this.øvelseMedApparatBeskrivelse, apparatOutput);
+	}
+	
+	@FXML
+	private void handleØvelseUtenApparat(ActionEvent event) throws IOException, SQLException {
+		LeggInnØvelseUtenApparat();
+	}
+	
+	public void LeggInnØvelseUtenApparat() throws SQLException{
+		
+	}
+	
 	//APPARAT
 	@FXML
 	private void handleApparat(ActionEvent event) throws IOException, SQLException {
@@ -142,6 +178,8 @@ public class MainController extends Connector implements Initializable {
 		Apparat apparat = new Apparat();
 		apparat.leggTilApparat(this.apparatNavn, this.apparatBeskrivelse, this.apparatOutput);
 	}
+	
+	//TRENINGSVARIGHET
 	
 	
 	

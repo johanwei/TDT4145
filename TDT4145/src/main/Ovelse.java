@@ -17,7 +17,7 @@ public class Ovelse extends Connector {
 	
 	public void ovelseGruppe(TextField ovelseGruppeNavn) throws SQLException {
 		Statement stmt = conn.createStatement();
-		String sql = String.format("INSERT INTO `OvelseGruppe` VALUES ('%s')", ovelseGruppeNavn);
+		String sql = String.format("INSERT INTO `OvelseGruppe` VALUES ('%s')", ovelseGruppeNavn.getText());
 		stmt.executeUpdate(sql);
 	}
 	
