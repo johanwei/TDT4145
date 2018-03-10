@@ -3,12 +3,13 @@ package main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -30,9 +31,27 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Label personligFormOutput;
 	@FXML public Label prestasjonOutput;
 	@FXML public Label generalOutput;
+	@FXML public TextArea notat;
+	
+	//TRENINGSØVELSE
+	@FXML public TextField ovelseNavn;
+	@FXML public TextField antallKilo;
+	@FXML public TextField antallSett;
+	@FXML public TextField antallReps;
+	@FXML public Button leggInnOvelse;
+	@FXML public Button leggInnNyTrening;
+	@FXML public Label generalOvelseOutput;
 	
 	//TRENINGSØKT
-	
+	@FXML public TextField antallTreningsOkter;
+	@FXML public Button visTreninger;
+	@FXML public ListView<String> treningOversikt;
+
+	//ØVELSER
+	@FXML public ListView<String> ovelseGruppe;
+	@FXML public ListView<String> ovelser;
+	@FXML public Button velgOvelseGruppe;
+	@FXML public Button oppdaterOvelseGrupper;
 	
 	//RESULTATLOGG
 	
@@ -73,7 +92,8 @@ public class MainController extends Connector implements Initializable {
 				handleTrening(event);
 			} catch (IOException | SQLException e) {
 				e.printStackTrace();
-			}});
+			}
+		});
 		dato.setOnMouseClicked(event-> { 
 			datoOutput.setOpacity(0);});
 		tidspunkt.setOnMouseClicked(event-> { 
@@ -85,7 +105,62 @@ public class MainController extends Connector implements Initializable {
 		prestasjon.setOnMouseClicked(event-> { 
 			prestasjonOutput.setOpacity(0);});
 		
+		
+		//TRENINGSØVELSE
+		leggInnOvelse.setOnAction((event) -> { 
+			try {
+				handleOvelse(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}
+		});
+		ovelseNavn.setOnMouseClicked(event-> { 
+			generalOvelseOutput.setOpacity(0);;});
+		
+		leggInnNyTrening.setOnAction((event) -> { 
+			dato.setDisable(false);
+			tidspunkt.setDisable(false);
+			varighet.setDisable(false);
+			personligForm.setDisable(false);
+			prestasjon.setDisable(false);
+			leggInnTrening.setDisable(false);
+			notat.setDisable(false);
+			ovelseNavn.setDisable(true);
+			antallKilo.setDisable(true);
+			antallSett.setDisable(true);
+			antallReps.setDisable(true);
+			leggInnOvelse.setDisable(true);
+			leggInnNyTrening.setDisable(true);
+			generalOvelseOutput.setOpacity(0);
+		});
+		
 		//TRENINGSØKT
+		
+		visTreninger.setOnAction((event) -> { 
+			try {
+				handleGjennomforTrening(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}
+		});
+		
+		//ØVELSER
+		
+		
+		oppdaterOvelseGrupper.setOnAction((event) -> { 
+			try {
+				handleOppdaterOvelseGruppe(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}
+		});
+		velgOvelseGruppe.setOnAction((event) -> { 
+			try {
+				handleOvelser(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}
+		});
 		
 		//RESULTATLOGG
 		
@@ -125,14 +200,78 @@ public class MainController extends Connector implements Initializable {
 	@FXML
     private void handleTrening(ActionEvent event) throws IOException, SQLException {
         leggInnTrening();
+        treningNotat();
     }
 
 	public void leggInnTrening() throws SQLException {
 		Trening trening = new Trening();
-		trening.leggInnTrening(this.treningID, this.dato, this.tidspunkt, this.varighet, this.personligForm, this.prestasjon, this.datoOutput, this.tidspunktOutput, this.varighetOutput, this.personligFormOutput, this.prestasjonOutput, this.generalOutput);
+		if (trening.leggInnTrening(this.dato, this.tidspunkt, this.varighet, this.personligForm, this.prestasjon, this.datoOutput, this.tidspunktOutput, this.varighetOutput, this.personligFormOutput, this.prestasjonOutput, this.generalOutput)) {
+			 dato.setDisable(true);
+			 tidspunkt.setDisable(true);
+			 varighet.setDisable(true);
+			 personligForm.setDisable(true);
+			 prestasjon.setDisable(true);
+			 leggInnTrening.setDisable(true);
+			 notat.setDisable(true);
+			 ovelseNavn.setDisable(false);
+			 antallKilo.setDisable(false);
+			 antallSett.setDisable(false);
+			 antallReps.setDisable(false);
+			 leggInnOvelse.setDisable(false);
+		}
 	}
 	
+	public void treningNotat() throws SQLException {
+		new Trening().treningNotat(notat);
+	}
+	
+	//TRENINGSØVELSE
+	@FXML
+	private void handleOvelse(ActionEvent event) throws IOException, SQLException {
+		treningOvelse();
+	}
+	
+	public void treningOvelse() throws SQLException, IOException {
+		if(new Trening().treningOvelse(ovelseNavn, antallKilo, antallSett, antallReps, generalOvelseOutput)) {
+			leggInnNyTrening.setDisable(false);
+		}
+	}
+
 	//TRENINGSØKT
+	@FXML
+	private void handleGjennomforTrening(ActionEvent event) throws IOException, SQLException {
+		gjennomfortTrening();
+	}
+	
+	public void gjennomfortTrening() throws SQLException {
+		treningOversikt.getItems().clear();
+		List<String> treninger = new Trening().gjennomfortTrening(antallTreningsOkter);
+		treningOversikt.getItems().add("ID:       Dato:                   Tidspunkt:         Min:     Form:     Prestasjon:   Notat");
+		for (String trening : treninger) {
+			treningOversikt.getItems().add(trening);
+		}
+	}
+	
+	//ØVELSER
+	@FXML
+	private void handleOppdaterOvelseGruppe(ActionEvent event) throws IOException, SQLException {
+		oppdaterOvelse();
+	}
+	
+	@FXML
+	private void handleOvelser(ActionEvent event) throws IOException, SQLException {
+		ovelser();
+	}
+	
+	public void oppdaterOvelse() throws SQLException {
+		new Ovelse().oppdaterOvelse(ovelseGruppe);
+	}
+	
+	
+	public void ovelser() throws SQLException {
+		new Ovelse().ovelser(ovelseGruppe, ovelser);
+	}
+	
 	
 	
 	//RESULTATLOGG
@@ -181,11 +320,5 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	//TRENINGSVARIGHET
-	
-	
-	
-	
-	
-	
 
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -14,6 +15,7 @@ public class Ovelse extends Connector {
 	public Ovelse() {
 		Connector.connect();
 	}
+	
 	
 	public void ovelseGruppe(TextField ovelseGruppeNavn) throws SQLException {
 		Statement stmt = conn.createStatement();
@@ -71,8 +73,31 @@ public class Ovelse extends Connector {
 	}
 	
 	
-	public static void main(String[] args) throws SQLException {
-		//Ovelse a = new Ovelse();
-		//a.ovelseUtenApparat("Knebøy", "Det funker!", "Utholdenhet");
+	public void oppdaterOvelse(ListView<String> ovelseGruppe) throws SQLException {
+		ovelseGruppe.getItems().clear();
+		String query = String.format("SELECT OvelseGruppeNavn FROM OvelseGruppe");
+		PreparedStatement stmt = Connector.conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			ovelseGruppe.getItems().add(rs.getString(1));
+		}
+	}
+	
+	
+	public void ovelser(ListView<String> ovelseGruppe, ListView<String> ovelse) throws SQLException {
+		ovelse.getItems().clear();
+		String gruppe = ovelseGruppe.getSelectionModel().getSelectedItem();
+		String query = String.format("SELECT * FROM Ovelse");
+		PreparedStatement stmt = Connector.conn.prepareStatement(query);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			if (gruppe.equals(rs.getString(2))) {
+				ovelse.getItems().add(rs.getString(1));
+			}
+		}
+		
 	}
 }
+
+
+

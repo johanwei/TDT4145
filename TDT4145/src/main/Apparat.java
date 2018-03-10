@@ -30,7 +30,5 @@ public class Apparat extends Connector {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		Apparat a = new Apparat();
-		a.test();
 	}
 }
