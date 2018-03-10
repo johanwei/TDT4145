@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -21,9 +22,9 @@ public class Ovelse extends Connector {
 	}
 	
 	
-	public void ovelseMedApparat(TextField ovelseNavn, TextField apparatNavn, TextField ovelseGruppeNavn, TextArea beskrivelse) throws SQLException{
+	public void ovelseMedApparat(TextField ovelseNavn, TextField apparatNavn, TextField ovelseGruppeNavn, TextArea beskrivelse, Label apparatOutput) throws SQLException{
 		if (notExists("Apparat", "ApparatNavn", apparatNavn.getText())){
-			new Apparat().leggTilApparat(apparatNavn, beskrivelse);
+			new Apparat().leggTilApparat(apparatNavn, beskrivelse, apparatOutput);
 		}
 		if (notExists("OvelseGruppe", "OvelseGruppeNavn", ovelseGruppeNavn.getText())){
 			ovelseGruppe(ovelseGruppeNavn);

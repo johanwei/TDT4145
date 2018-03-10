@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -64,14 +65,45 @@
 				</Tab>
 				<Tab text="Øvelsegruppe">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="øvelseMedApparatNavn" layoutX="216.0" layoutY="43.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsenavn" />
+                        <Label alignment="CENTER" layoutX="225.0" layoutY="20.0" prefHeight="17.0" prefWidth="150.0" text="Øvelse m/apparat" textAlignment="CENTER" />
+                        <Label alignment="CENTER" layoutX="421.0" layoutY="20.0" prefHeight="17.0" prefWidth="148.0" text="Øvelse u/apparat" />
+                        <TextField fx:id="øvelseMedApparatApparatNavn" layoutX="216.0" layoutY="78.0" prefHeight="27.0" prefWidth="167.0" promptText="Apparatnavn" />
+                        <TextField fx:id="øvelseMedApparatGruppeNavn" layoutX="217.0" layoutY="113.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsegruppenavn" />
+                        <TextArea fx:id="øvelseMedApparatBeskrivelse" layoutX="216.0" layoutY="151.0" prefHeight="152.0" prefWidth="167.0" promptText="Beskrivelse" />
+                        <Button fx:id="øvelseMedApparatButton" layoutX="268.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleØvelseMedApparat" text="Legg til" />
+                        <TextField fx:id="øvelseUtenApparatNavn" layoutX="412.0" layoutY="43.0" promptText="Øvelsenavn" />
+                        <TextField fx:id="øvelseUtenApparatGruppeNavn" layoutX="412.0" layoutY="78.0" promptText="Øvelsegruppenavn" />
+                        <TextArea fx:id="øvelseUtenApparatBeskrivelse" layoutX="412.0" layoutY="152.0" prefHeight="150.0" prefWidth="167.0" promptText="Beskrivelse" />
+                        <Button fx:id="øvelseUtenApparatButton" layoutX="463.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleØvelseUtenApparat" text="Legg til" />
+                        <Label alignment="CENTER" layoutX="29.0" layoutY="20.0" prefHeight="17.0" prefWidth="150.0" text="Øvelsegruppenavn" textAlignment="CENTER" />
+                        <TextField fx:id="øvelseGruppeNavn" layoutX="21.0" layoutY="43.0" promptText="Øvelsegruppenavn" />
+                        <Button fx:id="øvelseGruppeNavnButton" layoutX="72.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleØvelseGruppeNavn" text="Legg til" />
+                     </children></AnchorPane>
 					</content>
 				</Tab>
-				<Tab text="Treningsvarighet">
+				<Tab text="Apparat">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="apparatNavn" alignment="CENTER" layoutX="217.0" layoutY="50.0" promptText="Apparatnavn" />
+                        <TextArea fx:id="apparatBeskrivelse" layoutX="200.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse av apparat" />
+                        <Button fx:id="apparatButton" layoutX="243.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleApparat" text="Legg til apparat" />
+                        <Label fx:id="apparatOutput" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="8.0" prefHeight="31.0" prefWidth="564.0" textAlignment="CENTER">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
 					</content>
 				</Tab>
+            <Tab text="Treningsvarighet">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
 			</tabs>
 		</TabPane>
 	</children>

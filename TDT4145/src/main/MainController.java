@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +38,25 @@ public class MainController extends Connector implements Initializable {
 	
 	
 	//ØVELSEGRUPPE
+	@FXML public TextField øvelseGruppeNavn;
+	@FXML public Button øvelseGruppeNavnButton;
 	
+	@FXML public TextField øvelseMedApparatNavn;
+	@FXML public TextField øvelseMedApparatApparatNavn;
+	@FXML public TextField øvelseMedApparatGruppeNavn;
+	@FXML public TextArea øvelseMedApparatBeskrivelse;
+	@FXML public Button øvelseMedApparatButton;
+	
+	@FXML public TextField øvelseUtenApparatNavn;
+	@FXML public TextField øvelseUtenApparatGruppeNavn;
+	@FXML public TextArea øvelseUtenApparatBeskrivelse;
+	@FXML public Button øvelseUtenApparatButton;
+	
+	//APPARAT
+	@FXML public TextField apparatNavn;
+	@FXML public TextArea apparatBeskrivelse;
+	@FXML public Button apparatButton;
+	@FXML public Label apparatOutput;
 	
 	//TRENINGSVARIGHET
 	
@@ -47,6 +66,8 @@ public class MainController extends Connector implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		//TRENING
 		leggInnTrening.setOnAction((event) -> { 
 			try {
 				handleTrening(event);
@@ -63,8 +84,44 @@ public class MainController extends Connector implements Initializable {
 			personligFormOutput.setOpacity(0);});
 		prestasjon.setOnMouseClicked(event-> { 
 			prestasjonOutput.setOpacity(0);});
+		
+		//TRENINGSØKT
+		
+		//RESULTATLOGG
+		
+		//ØVELSEGRUPPE
+		øvelseGruppeNavnButton.setOnAction((event) -> { 
+			try {
+				handleØvelseGruppeNavn(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}});
+		øvelseMedApparatButton.setOnAction((event) -> { 
+			try {
+				handleTrening(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}});
+		øvelseUtenApparatButton.setOnAction((event) -> { 
+			try {
+				handleTrening(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}});
+		
+		//APPARAT
+		apparatButton.setOnAction((event) -> { 
+			try {
+				handleApparat(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}});
+		apparatOutput.setOpacity(0);
+		
+		//TRENINGSVARIGHET
 	}
 	
+	//TRENING
 	@FXML
     private void handleTrening(ActionEvent event) throws IOException, SQLException {
         leggInnTrening();
@@ -74,5 +131,22 @@ public class MainController extends Connector implements Initializable {
 		Trening trening = new Trening();
 		trening.leggInnTrening(this.treningID, this.dato, this.tidspunkt, this.varighet, this.personligForm, this.prestasjon, this.datoOutput, this.tidspunktOutput, this.varighetOutput, this.personligFormOutput, this.prestasjonOutput, this.generalOutput);
 	}
+	
+	//APPARAT
+	@FXML
+	private void handleApparat(ActionEvent event) throws IOException, SQLException {
+		leggInnApparat();
+	}
+	
+	public void leggInnApparat() throws SQLException{
+		Apparat apparat = new Apparat();
+		apparat.leggTilApparat(this.apparatNavn, this.apparatBeskrivelse, this.apparatOutput);
+	}
+	
+	
+	
+	
+	
+	
 
 }
