@@ -15,7 +15,7 @@ public class Ovelse extends Connector {
 	public Ovelse() {
 		Connector.connect();
 	}
-	
+	//Test
 	
 	public void ovelseGruppe(TextField ovelseGruppeNavn) throws SQLException {
 		Statement stmt = conn.createStatement();
