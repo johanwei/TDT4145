@@ -2,16 +2,23 @@ package main;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -54,7 +61,22 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Button oppdaterOvelseGrupper;
 	
 	//RESULTATLOGG
+	@FXML public ComboBox<String> resultatloggComboBox;
+	@FXML public TextField resultatloggFra;
+	@FXML public TextField resultatloggTil;
+	@FXML public Button resultatLoggButton;
 	
+	@FXML public Label resultatloggComboBoxOutput;
+	@FXML public Label resultatloggFraOutput;
+	@FXML public Label resultatloggTilOutput;
+	
+	@FXML public TableView<Resultatlogg> resultatloggTableView;
+	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewTreningId;
+	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewØvelse;
+	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewDato;
+	@FXML public TableColumn<Resultatlogg, Integer> resultatloggTableViewKilo;
+	@FXML public TableColumn<Resultatlogg, Integer> resultatloggTableViewSett;
+	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewNotat;	
 	
 	//ØVELSEGRUPPE
 	@FXML public TextField øvelseGruppeNavn;
@@ -78,14 +100,13 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Label apparatOutput;
 	
 	//TRENINGSVARIGHET
-	
+		
 	public MainController() {
 		Connector.connect();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		//TRENING
 		leggInnTrening.setOnAction((event) -> { 
 			try {
@@ -135,7 +156,6 @@ public class MainController extends Connector implements Initializable {
 		});
 		
 		//TRENINGSØKT
-		
 		visTreninger.setOnAction((event) -> { 
 			try {
 				handleGjennomforTrening(event);
@@ -145,8 +165,6 @@ public class MainController extends Connector implements Initializable {
 		});
 		
 		//ØVELSER
-		
-		
 		oppdaterOvelseGrupper.setOnAction((event) -> { 
 			try {
 				handleOppdaterOvelseGruppe(event);
@@ -163,6 +181,14 @@ public class MainController extends Connector implements Initializable {
 		});
 		
 		//RESULTATLOGG
+		resultatloggComboBox.getItems().addAll(resultatloggGetOvelser());
+		resultatLoggButton.setOnAction((event) -> { 
+				try {
+					handleFinnResultatlogg(event);
+				} catch (IOException | SQLException | ParseException e) {
+					e.printStackTrace();
+				}
+			});
 		
 		//ØVELSEGRUPPE
 		øvelseGruppeNavnButton.setOnAction((event) -> { 
@@ -276,6 +302,35 @@ public class MainController extends Connector implements Initializable {
 	
 	//RESULTATLOGG
 	
+	public List<String> resultatloggGetOvelser() {
+		Resultatlogg resultatlogg = new Resultatlogg();
+		return resultatlogg.getOvelser();
+	}
+	
+	@FXML
+	private void handleFinnResultatlogg(ActionEvent event) throws IOException, SQLException, ParseException {
+		FinnResultatlogg(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil, this.resultatloggComboBoxOutput, this.resultatloggFraOutput, this.resultatloggTilOutput);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, TextField resultatloggFra, TextField resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
+		resultatloggTableView.getColumns().clear();
+		resultatloggTableView.getItems().clear();
+		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("TreningId"));
+		resultatloggTableViewØvelse.setCellValueFactory(new PropertyValueFactory<>("Øvelse"));
+		resultatloggTableViewDato.setCellValueFactory(new PropertyValueFactory<>("Dato"));
+		resultatloggTableViewKilo.setCellValueFactory(new PropertyValueFactory<>("Kilo"));
+		resultatloggTableViewSett.setCellValueFactory(new PropertyValueFactory<>("Sett"));
+		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("Notat"));
+		resultatloggTableView.getColumns().addAll(resultatloggTableViewTreningId, resultatloggTableViewØvelse, resultatloggTableViewDato, resultatloggTableViewKilo, resultatloggTableViewSett, resultatloggTableViewNotat);
+        
+		Resultatlogg resultatlogg = new Resultatlogg();
+		resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
+		
+		ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);
+		System.out.println(resultatloggInformasjon);
+		//resultatloggTableView.getItems().addAll(resultatloggInformasjon);
+	}
 	
 	//ØVELSEGRUPPE
 	@FXML

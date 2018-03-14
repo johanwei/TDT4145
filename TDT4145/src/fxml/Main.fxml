@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
 	<children>
 		<TabPane layoutY="-2.0" prefHeight="602.0" prefWidth="612.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
@@ -150,7 +153,47 @@
 				</Tab>
 				<Tab text="Resultatlogg">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="resultatloggTableView" layoutX="31.0" layoutY="104.0" prefHeight="406.0" prefWidth="550.0">
+                          <columns>
+                            <TableColumn fx:id="resultatloggTableViewØvelse" prefWidth="110.0" text="Øvelse" />
+                            <TableColumn fx:id="resultatloggTableViewDato" prefWidth="110.0" text="Dato" />
+                              <TableColumn fx:id="resultatloggTableViewKilo" prefWidth="110.0" text="Antall kilo" />
+                              <TableColumn fx:id="resultatloggTableViewSett" minWidth="0.0" prefWidth="110.0" text="Antall sett" />
+                              <TableColumn fx:id="resultatloggTableViewNotat" prefWidth="110.0" text="Notat" />
+                          </columns>
+                        </TableView>
+                        <ComboBox fx:id="resultatloggComboBox" layoutX="31.0" layoutY="39.0" prefWidth="150.0" promptText="Øvelse" />
+                        <TextField fx:id="resultatloggFra" layoutX="224.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
+                        <TextField fx:id="resultatloggTil" layoutX="358.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
+                        <Label layoutX="257.0" layoutY="14.0" text="Fra">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="resultatLoggButton" layoutX="486.0" layoutY="39.0" mnemonicParsing="false" text="Finn resultat" />
+                        <Label layoutX="396.0" layoutY="14.0" text="Til">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="resultatloggComboBoxOutput" layoutX="65.0" layoutY="80.0" opacity="0.0" text="Øvelse må velges" textFill="RED">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="resultatloggFraOutput" layoutX="207.0" layoutY="80.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="resultatloggTilOutput" layoutX="341.0" layoutY="80.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
 					</content>
 				</Tab>
             <Tab text="Treningsvarighet">
