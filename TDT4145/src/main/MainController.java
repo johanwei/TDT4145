@@ -2,7 +2,6 @@ package main;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -26,7 +26,7 @@ public class MainController extends Connector implements Initializable {
 	
 	//TRENING
 	@FXML public TextField treningID;
-	@FXML public TextField dato;
+	@FXML public DatePicker dato;
 	@FXML public TextField tidspunkt;
 	@FXML public TextField varighet;
 	@FXML public TextField personligForm;
@@ -52,7 +52,14 @@ public class MainController extends Connector implements Initializable {
 	//TRENINGSØKT
 	@FXML public TextField antallTreningsOkter;
 	@FXML public Button visTreninger;
-	@FXML public ListView<String> treningOversikt;
+	@FXML public TableView<TreningsOktObjekt> treningOversikt;
+	@FXML private TableColumn<TreningsOktObjekt, String> treningIDCol;
+	@FXML private TableColumn<TreningsOktObjekt, String> datoCol;
+	@FXML private TableColumn<TreningsOktObjekt, String> tidspunktCol;
+	@FXML private TableColumn<TreningsOktObjekt, Integer> varighetCol;
+	@FXML private TableColumn<TreningsOktObjekt, String> personligFormCol;
+	@FXML private TableColumn<TreningsOktObjekt, String> prestasjonCol;
+	@FXML private TableColumn<TreningsOktObjekt, String> notatCol;
 
 	//ØVELSER
 	@FXML public ListView<String> ovelseGruppe;
@@ -248,7 +255,7 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	public void treningNotat() throws SQLException {
-		new Trening().treningNotat(notat);
+		//new Trening().treningNotat(notat);
 	}
 	
 	//TRENINGSØVELSE
@@ -269,14 +276,23 @@ public class MainController extends Connector implements Initializable {
 		gjennomfortTrening();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void gjennomfortTrening() throws SQLException {
+		treningOversikt.getColumns().clear();
 		treningOversikt.getItems().clear();
-		List<String> treninger = new Trening().gjennomfortTrening(antallTreningsOkter);
-		treningOversikt.getItems().add("ID:       Dato:                   Tidspunkt:         Min:     Form:     Prestasjon:   Notat");
-		for (String trening : treninger) {
-			treningOversikt.getItems().add(trening);
-		}
-	}
+		treningIDCol.setCellValueFactory(new PropertyValueFactory<>("treningID"));
+        datoCol.setCellValueFactory(new PropertyValueFactory<>("dato"));
+        tidspunktCol.setCellValueFactory(new PropertyValueFactory<>("tidspunkt"));
+        varighetCol.setCellValueFactory(new PropertyValueFactory<>("varighet"));
+        personligFormCol.setCellValueFactory(new PropertyValueFactory<>("personligForm"));
+        prestasjonCol.setCellValueFactory(new PropertyValueFactory<>("prestasjon"));
+        notatCol.setCellValueFactory(new PropertyValueFactory<>("notat"));
+
+        treningOversikt.getColumns().addAll(treningIDCol, datoCol, tidspunktCol, varighetCol,  personligFormCol, prestasjonCol, notatCol);
+        
+        ObservableList<TreningsOktObjekt> listOfTreningsOkter = new Trening().gjennomfortTrening(antallTreningsOkter.getText());
+        treningOversikt.getItems().addAll(listOfTreningsOkter);
+}
 	
 	//ØVELSER
 	@FXML
