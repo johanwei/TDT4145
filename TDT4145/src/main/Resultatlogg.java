@@ -52,24 +52,15 @@ public class Resultatlogg extends Connector {
         
         Date fra = java.sql.Date.valueOf(resultatloggFra.getValue());
 		Date til = java.sql.Date.valueOf(resultatloggTil.getValue());
-        /*Date dateFra = new Date();
-        Date dateTil = new Date();
-        try {
-        		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-            dateFra = formatter.parse(resultatloggFra.getText());
-            dateTil = formatter.parse(resultatloggTil.getText());
-        } catch (ParseException p) {
-        		p.printStackTrace();
-        }*/
         
-        String sql2 = String.format("SELECT Trening.TreningID, OvelseNavn, Dato, AntallKilo, AntallSett, Notat FROM TreningOvelse JOIN TreningNotat ON TreningOvelse.TreningID = TreningNotat.TreningID JOIN Trening ON TreningOvelse.TreningID = Trening.TreningID");
+        String sql2 = String.format("SELECT Trening.TreningID, OvelseNavn, Dato, AntallKilo, AntallSett, AntallReps, Notat FROM TreningOvelse JOIN TreningNotat ON TreningOvelse.TreningID = TreningNotat.TreningID JOIN Trening ON TreningOvelse.TreningID = Trening.TreningID");
         PreparedStatement stmt2 = conn.prepareStatement(sql2);
         ResultSet rs2 = stmt2.executeQuery();
         while (rs2.next()) {
         		if (rs2.getDate(3).after(fra) && rs2.getDate(3).before(til)) {
         			for (int i = 1; i <= treningIdListe.size(); i++) {
         				if (rs2.getInt(1) == treningIdListe.get(i-1)) {
-        					resultatloggObjekter.add(new ResultatloggObjekt(rs2.getInt(1), rs2.getString(2), rs2.getDate(3).toString(), rs2.getInt(4), rs2.getInt(5), rs2.getString(6)));
+        					resultatloggObjekter.add(new ResultatloggObjekt(rs2.getInt(1), rs2.getString(2), rs2.getDate(3).toString(), rs2.getInt(4), rs2.getInt(5), rs2.getInt(6), rs2.getString(7)));
         				}
         			}
         		}
@@ -77,37 +68,14 @@ public class Resultatlogg extends Connector {
         return resultatloggObjekter;
 	}		
 	
-	public boolean validateInput(ComboBox<String> resultatloggComboBox/*,  resultatloggFra, TextField resultatloggTil*/, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) {
+	public boolean validateInput(ComboBox<String> resultatloggComboBox, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) {
 		resultatloggComboBoxOutput.setOpacity(0);
-		/*resultatloggFraOutput.setOpacity(0);
-		resultatloggTilOutput.setOpacity(0);*/
 		if (!resultatloggComboBox.getSelectionModel().isEmpty()) {
 			return true;
 		}
 		else {
 			resultatloggComboBoxOutput.setOpacity(100);
 		}
-		/*else if (!validateFra(resultatloggFra)) {
-			resultatloggFraOutput.setOpacity(100);
-		}
-		else if (!validateTil(resultatloggTil)) {
-			resultatloggTilOutput.setOpacity(100);
-		}*/
 		return false;
 	}
-	
-	/*public boolean validateFra(TextField resultatloggFra) {
-		if (!resultatloggFra.getText().matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) {
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean validateTil(TextField resultatloggTil) {
-		if (!resultatloggTil.getText().matches("([0-9]{4})-([0-9]{2})-([0-9]{2})")) {
-			return false;
-		}
-		return true;
-	}
-	*/
 }

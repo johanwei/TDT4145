@@ -84,6 +84,7 @@ public class MainController extends Connector implements Initializable {
 	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewDato;
 	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewKilo;
 	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewSett;
+	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewReps;
 	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewNotat;	
 	
 	//ØVELSEGRUPPE
@@ -347,10 +348,11 @@ public class MainController extends Connector implements Initializable {
 		resultatloggTableViewDato.setCellValueFactory(new PropertyValueFactory<>("dato"));
 		resultatloggTableViewKilo.setCellValueFactory(new PropertyValueFactory<>("kilo"));
 		resultatloggTableViewSett.setCellValueFactory(new PropertyValueFactory<>("sett"));
+		resultatloggTableViewReps.setCellValueFactory(new PropertyValueFactory<>("reps"));
 		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("notat"));
         
 		Resultatlogg resultatlogg = new Resultatlogg();
-		resultatlogg.validateInput(resultatloggComboBox/*, resultatloggFra, resultatloggTil*/, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
+		resultatlogg.validateInput(resultatloggComboBox, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
 		
 		ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);		
 		resultatloggTableView.getItems().addAll(resultatloggInformasjon);

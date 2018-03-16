@@ -9,12 +9,13 @@ public class ResultatloggObjekt {
 	
 	public ResultatloggObjekt() {}
 
-    public ResultatloggObjekt(int treningId, String ovelse, String dato, int kilo, int sett, String notat) {
+    public ResultatloggObjekt(int treningId, String ovelse, String dato, int kilo, int sett, int reps, String notat) {
     		setTreningId(treningId);
     		setOvelse(ovelse);
         setDato(dato);
         setKilo(kilo);
         setSett(sett);
+        setReps(reps);
         setNotat(notat);
     }
 
@@ -23,6 +24,7 @@ public class ResultatloggObjekt {
 	private final StringProperty dato = new SimpleStringProperty(this, "dato");
     private final IntegerProperty kilo = new SimpleIntegerProperty(this, "kilo");
     private final IntegerProperty sett = new SimpleIntegerProperty(this, "sett");
+    private final IntegerProperty reps = new SimpleIntegerProperty(this, "reps");
     private final StringProperty notat = new SimpleStringProperty(this, "notat");
 
     
@@ -78,6 +80,17 @@ public class ResultatloggObjekt {
     }
     public final void setSett(int sett) {
     		settProperty().set(sett);
+    }
+    
+    
+    public IntegerProperty repsProperty() {
+        return reps;
+    }
+    public final Integer getReps() {
+        return repsProperty().get();
+    }
+    public final void setReps(int reps) {
+    		repsProperty().set(reps);
     }
 
     
