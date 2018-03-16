@@ -266,7 +266,7 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	public void treningNotat() throws SQLException {
-		//new Trening().treningNotat(notat);
+		new Trening().treningNotat(notat);
 	}
 	
 	//TRENINGSØVELSE
