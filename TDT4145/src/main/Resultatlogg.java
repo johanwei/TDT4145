@@ -39,7 +39,7 @@ public class Resultatlogg extends Connector {
 	public ObservableList<ResultatloggObjekt> getData(ComboBox<String> resultatloggComboBox, TextField resultatloggFra, TextField resultatloggTil) throws SQLException, ParseException {
 		//Hent ut treningsID fra TreningsOvelse hvor OvelseNavn = ComboBox.getSelectionModel().getSelectedItem()
 		List <Integer> treningIdListe = new ArrayList<Integer>();
-		String sql1 = String.format("SELECT TreningID FROM TreningOvelse WHERE OvelseNavn = " + resultatloggComboBox.getSelectionModel().getSelectedItem());
+		String sql1 = String.format("SELECT TreningID FROM TreningOvelse WHERE OvelseNavn ='" + resultatloggComboBox.getSelectionModel().getSelectedItem() + "'");
         PreparedStatement stmt1 = conn.prepareStatement(sql1);
         ResultSet rs1 = stmt1.executeQuery();
         while (rs1.next()) {
@@ -63,9 +63,9 @@ public class Resultatlogg extends Connector {
         PreparedStatement stmt2 = conn.prepareStatement(sql2);
         ResultSet rs2 = stmt2.executeQuery();
         while (rs2.next()) {
-        		if (rs2.getDate(3).compareTo(dateFra) >= 0 && rs2.getDate(3).compareTo(dateTil) <= 0) {
-        			for (int i = 0; i < treningIdListe.size() + 1; i++) {
-        				if (rs2.getInt(1) == treningIdListe.get(i)) {
+        		if (rs2.getDate(3).after(dateFra) && rs2.getDate(3).before(dateTil)) {
+        			for (int i = 1; i <= treningIdListe.size(); i++) {
+        				if (rs2.getInt(1) == treningIdListe.get(i-1)) {
         					resultatloggObjekter.add(new ResultatloggObjekt(rs2.getInt(1), rs2.getString(2), rs2.getDate(3).toString(), rs2.getInt(4), rs2.getInt(5), rs2.getString(6)));
         				}
         			}

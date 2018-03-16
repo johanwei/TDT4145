@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Label resultatloggFraOutput;
 	@FXML public Label resultatloggTilOutput;
 	
-	@FXML public TableView<Resultatlogg> resultatloggTableView;
+	@FXML public TableView<ResultatloggObjekt> resultatloggTableView;
 	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewTreningId;
 	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewØvelse;
 	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewDato;
@@ -330,7 +331,6 @@ public class MainController extends Connector implements Initializable {
 	
 	@SuppressWarnings("unchecked")
 	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, TextField resultatloggFra, TextField resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
-		resultatloggTableView.getColumns().clear();
 		resultatloggTableView.getItems().clear();
 		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("treningId"));
 		resultatloggTableViewØvelse.setCellValueFactory(new PropertyValueFactory<>("ovelse"));
@@ -338,14 +338,12 @@ public class MainController extends Connector implements Initializable {
 		resultatloggTableViewKilo.setCellValueFactory(new PropertyValueFactory<>("kilo"));
 		resultatloggTableViewSett.setCellValueFactory(new PropertyValueFactory<>("sett"));
 		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("notat"));
-		//resultatloggTableView.getColumns().addAll(resultatloggTableViewTreningId, resultatloggTableViewØvelse, resultatloggTableViewDato, resultatloggTableViewKilo, resultatloggTableViewSett, resultatloggTableViewNotat);
         
-		//Resultatlogg resultatlogg = new Resultatlogg();
-		//resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
+		Resultatlogg resultatlogg = new Resultatlogg();
+		resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
 		
-		//ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);
-		System.out.println("Yo");
-		//resultatloggTableView.getItems().addAll(resultatloggInformasjon);
+		ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);		
+		resultatloggTableView.getItems().addAll(resultatloggInformasjon);
 	}
 	
 	//ØVELSEGRUPPE

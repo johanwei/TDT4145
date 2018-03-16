@@ -40,7 +40,7 @@ public class ResultatloggObjekt {
     public StringProperty ovelseProperty() {
         return ovelse;
     }
-    public final String getSsn() {
+    public final String getOvelse() {
         return ovelseProperty().get();
     }
     public final void setOvelse(String ovelse) {
@@ -48,7 +48,7 @@ public class ResultatloggObjekt {
     }
     
 	
-    public StringProperty datoProperty() {
+   public StringProperty datoProperty() {
         return dato ;
     }
     public final String getDato() {

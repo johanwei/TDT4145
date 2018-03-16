@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
 	<children>
 		<TabPane layoutY="-2.0" prefHeight="602.0" prefWidth="612.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
@@ -166,16 +166,17 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="resultatloggTableView" layoutX="31.0" layoutY="104.0" prefHeight="406.0" prefWidth="550.0">
+                        <TableView fx:id="resultatloggTableView" layoutX="6.0" layoutY="106.0" prefHeight="406.0" prefWidth="600.0">
                           <columns>
-                            <TableColumn fx:id="resultatloggTableViewØvelse" prefWidth="110.0" text="Øvelse" />
-                            <TableColumn fx:id="resultatloggTableViewDato" prefWidth="110.0" text="Dato" />
-                              <TableColumn fx:id="resultatloggTableViewKilo" prefWidth="110.0" text="Antall kilo" />
-                              <TableColumn fx:id="resultatloggTableViewSett" minWidth="0.0" prefWidth="110.0" text="Antall sett" />
-                              <TableColumn fx:id="resultatloggTableViewNotat" prefWidth="110.0" text="Notat" />
+                              <TableColumn fx:id="resultatloggTableViewTreningId" prefWidth="100.0" text="TreningID" />
+                            <TableColumn fx:id="resultatloggTableViewØvelse" prefWidth="100.0" text="Øvelse" />
+                            <TableColumn fx:id="resultatloggTableViewDato" prefWidth="100.0" text="Dato" />
+                              <TableColumn fx:id="resultatloggTableViewKilo" prefWidth="100.0" text="Antall kilo" />
+                              <TableColumn fx:id="resultatloggTableViewSett" minWidth="0.0" prefWidth="100.0" text="Antall sett" />
+                              <TableColumn fx:id="resultatloggTableViewNotat" prefWidth="100.0" text="Notat" />
                           </columns>
                         </TableView>
-                        <ComboBox fx:id="resultatloggComboBox" layoutX="31.0" layoutY="39.0" prefWidth="150.0" promptText="Øvelse" />
+                        <ComboBox fx:id="resultatloggComboBox" layoutX="25.0" layoutY="39.0" prefWidth="150.0" promptText="Øvelse" />
                         <TextField fx:id="resultatloggFra" layoutX="224.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
                         <TextField fx:id="resultatloggTil" layoutX="358.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
                         <Label layoutX="257.0" layoutY="14.0" text="Fra">
@@ -183,7 +184,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="resultatLoggButton" layoutX="486.0" layoutY="39.0" mnemonicParsing="false" text="Finn resultat" />
+                        <Button fx:id="resultatLoggButton" layoutX="491.0" layoutY="39.0" mnemonicParsing="false" text="Finn resultat" />
                         <Label layoutX="396.0" layoutY="14.0" text="Til">
                            <font>
                               <Font name="Arial" size="18.0" />
