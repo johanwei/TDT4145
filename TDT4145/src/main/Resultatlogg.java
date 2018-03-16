@@ -59,7 +59,7 @@ public class Resultatlogg extends Connector {
         while (rs2.next()) {
         		if (rs2.getDate(3).after(fra) && rs2.getDate(3).before(til)) {
         			for (int i = 1; i <= treningIdListe.size(); i++) {
-        				if (rs2.getInt(1) == treningIdListe.get(i-1)) {
+        				if (rs2.getInt(1) == treningIdListe.get(i-1) && rs2.getString(2).equals(resultatloggComboBox.getSelectionModel().getSelectedItem())) {
         					resultatloggObjekter.add(new ResultatloggObjekt(rs2.getInt(1), rs2.getString(2), rs2.getDate(3).toString(), rs2.getInt(4), rs2.getInt(5), rs2.getInt(6), rs2.getString(7)));
         				}
         			}
