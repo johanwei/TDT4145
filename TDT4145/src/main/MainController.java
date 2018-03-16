@@ -71,12 +71,12 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Label resultatloggTilOutput;
 	
 	@FXML public TableView<Resultatlogg> resultatloggTableView;
-	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewTreningId;
-	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewØvelse;
-	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewDato;
-	@FXML public TableColumn<Resultatlogg, Integer> resultatloggTableViewKilo;
-	@FXML public TableColumn<Resultatlogg, Integer> resultatloggTableViewSett;
-	@FXML public TableColumn<Resultatlogg, String> resultatloggTableViewNotat;	
+	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewTreningId;
+	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewØvelse;
+	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewDato;
+	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewKilo;
+	@FXML public TableColumn<ResultatloggObjekt, Integer> resultatloggTableViewSett;
+	@FXML public TableColumn<ResultatloggObjekt, String> resultatloggTableViewNotat;	
 	
 	//ØVELSEGRUPPE
 	@FXML public TextField øvelseGruppeNavn;
@@ -316,19 +316,19 @@ public class MainController extends Connector implements Initializable {
 	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, TextField resultatloggFra, TextField resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
 		resultatloggTableView.getColumns().clear();
 		resultatloggTableView.getItems().clear();
-		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("TreningId"));
-		resultatloggTableViewØvelse.setCellValueFactory(new PropertyValueFactory<>("Øvelse"));
-		resultatloggTableViewDato.setCellValueFactory(new PropertyValueFactory<>("Dato"));
-		resultatloggTableViewKilo.setCellValueFactory(new PropertyValueFactory<>("Kilo"));
-		resultatloggTableViewSett.setCellValueFactory(new PropertyValueFactory<>("Sett"));
-		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("Notat"));
-		resultatloggTableView.getColumns().addAll(resultatloggTableViewTreningId, resultatloggTableViewØvelse, resultatloggTableViewDato, resultatloggTableViewKilo, resultatloggTableViewSett, resultatloggTableViewNotat);
+		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("treningId"));
+		resultatloggTableViewØvelse.setCellValueFactory(new PropertyValueFactory<>("ovelse"));
+		resultatloggTableViewDato.setCellValueFactory(new PropertyValueFactory<>("dato"));
+		resultatloggTableViewKilo.setCellValueFactory(new PropertyValueFactory<>("kilo"));
+		resultatloggTableViewSett.setCellValueFactory(new PropertyValueFactory<>("sett"));
+		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("notat"));
+		//resultatloggTableView.getColumns().addAll(resultatloggTableViewTreningId, resultatloggTableViewØvelse, resultatloggTableViewDato, resultatloggTableViewKilo, resultatloggTableViewSett, resultatloggTableViewNotat);
         
-		Resultatlogg resultatlogg = new Resultatlogg();
-		resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
+		//Resultatlogg resultatlogg = new Resultatlogg();
+		//resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
 		
-		ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);
-		System.out.println(resultatloggInformasjon);
+		//ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);
+		System.out.println("Yo");
 		//resultatloggTableView.getItems().addAll(resultatloggInformasjon);
 	}
 	

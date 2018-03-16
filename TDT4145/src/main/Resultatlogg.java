@@ -49,11 +49,17 @@ public class Resultatlogg extends Connector {
 		//Join TreningsOvelse og TreningsNotat på TreningsID, Join denne med Trening, på TreningsID og Dato mellom resultatloggFra og resultatloggTil
         ObservableList<ResultatloggObjekt> resultatloggObjekter = FXCollections.observableArrayList();
         
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-        Date dateFra = formatter.parse(resultatloggFra.getText());
-        Date dateTil = formatter.parse(resultatloggTil.getText());
+        Date dateFra = new Date();
+        Date dateTil = new Date();
+        try {
+        		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            dateFra = formatter.parse(resultatloggFra.getText());
+            dateTil = formatter.parse(resultatloggTil.getText());
+        } catch (ParseException p) {
+        		p.printStackTrace();
+        }
         
-        String sql2 = String.format("SELECT TreningID, OvelseNavn, Dato, AntallKilo, AntallSett, Notat FROM TreningOvelse JOIN TreningNotat ON TreningOvelse.TreningID = TreningNotat.TreningID JOIN Trening ON TreningOvelse.TreningID = Trening.TreningID");
+        String sql2 = String.format("SELECT Trening.TreningID, OvelseNavn, Dato, AntallKilo, AntallSett, Notat FROM TreningOvelse JOIN TreningNotat ON TreningOvelse.TreningID = TreningNotat.TreningID JOIN Trening ON TreningOvelse.TreningID = Trening.TreningID");
         PreparedStatement stmt2 = conn.prepareStatement(sql2);
         ResultSet rs2 = stmt2.executeQuery();
         while (rs2.next()) {
