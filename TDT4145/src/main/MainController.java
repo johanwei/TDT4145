@@ -70,8 +70,8 @@ public class MainController extends Connector implements Initializable {
 	
 	//RESULTATLOGG
 	@FXML public ComboBox<String> resultatloggComboBox;
-	@FXML public TextField resultatloggFra;
-	@FXML public TextField resultatloggTil;
+	@FXML public DatePicker resultatloggFra;
+	@FXML public DatePicker resultatloggTil;
 	@FXML public Button resultatLoggButton;
 	
 	@FXML public Label resultatloggComboBoxOutput;
@@ -108,6 +108,10 @@ public class MainController extends Connector implements Initializable {
 	@FXML public Label apparatOutput;
 	
 	//TRENINGSVARIGHET
+	@FXML public DatePicker treningsvarighetFra;
+	@FXML public DatePicker treningsvarighetTil;
+	@FXML public Button treningsvarighetButton;
+	@FXML public TextArea treningsvarighetOutput;
 		
 	public MainController() {
 		Connector.connect();
@@ -228,6 +232,12 @@ public class MainController extends Connector implements Initializable {
 		apparatOutput.setOpacity(0);
 		
 		//TRENINGSVARIGHET
+		treningsvarighetButton.setOnAction((event) -> { 
+			try {
+				handleTreningsVarighet(event);
+			} catch (IOException | SQLException e) {
+				e.printStackTrace();
+			}});
 	}
 	
 	//TRENING
@@ -330,7 +340,7 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, TextField resultatloggFra, TextField resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
+	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, DatePicker resultatloggFra, DatePicker resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
 		resultatloggTableView.getItems().clear();
 		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("treningId"));
 		resultatloggTableViewØvelse.setCellValueFactory(new PropertyValueFactory<>("ovelse"));
@@ -340,7 +350,7 @@ public class MainController extends Connector implements Initializable {
 		resultatloggTableViewNotat.setCellValueFactory(new PropertyValueFactory<>("notat"));
         
 		Resultatlogg resultatlogg = new Resultatlogg();
-		resultatlogg.validateInput(resultatloggComboBox, resultatloggFra, resultatloggTil, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
+		resultatlogg.validateInput(resultatloggComboBox/*, resultatloggFra, resultatloggTil*/, resultatloggComboBoxOutput, resultatloggFraOutput, resultatloggTilOutput);
 		
 		ObservableList<ResultatloggObjekt> resultatloggInformasjon = new Resultatlogg().getData(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil);		
 		resultatloggTableView.getItems().addAll(resultatloggInformasjon);
@@ -389,5 +399,14 @@ public class MainController extends Connector implements Initializable {
 	}
 	
 	//TRENINGSVARIGHET
+	
+	@FXML private void handleTreningsVarighet(ActionEvent event) throws IOException, SQLException {
+		treningsVarighet(this.treningsvarighetFra, this.treningsvarighetTil, this.treningsvarighetOutput);
+	}
+	
+	public void treningsVarighet(DatePicker treningsvarighetFra, DatePicker treningsvarighetTil, TextArea treningsvarighetOutput) throws SQLException {
+		Treningsvarighet treningsvarighet = new Treningsvarighet();
+		treningsvarighet.calculateTreningsVarighet(treningsvarighetFra, treningsvarighetTil, treningsvarighetOutput);
+	}
 
 }

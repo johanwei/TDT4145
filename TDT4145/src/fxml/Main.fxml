@@ -105,20 +105,25 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="øvelseMedApparatNavn" layoutX="216.0" layoutY="43.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsenavn" />
-                        <Label alignment="CENTER" layoutX="225.0" layoutY="20.0" prefHeight="17.0" prefWidth="150.0" text="Øvelse m/apparat" textAlignment="CENTER" />
-                        <Label alignment="CENTER" layoutX="421.0" layoutY="20.0" prefHeight="17.0" prefWidth="148.0" text="Øvelse u/apparat" />
-                        <TextField fx:id="øvelseMedApparatApparatNavn" layoutX="216.0" layoutY="78.0" prefHeight="27.0" prefWidth="167.0" promptText="Apparatnavn" />
-                        <TextField fx:id="øvelseMedApparatGruppeNavn" layoutX="217.0" layoutY="113.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsegruppenavn" />
-                        <TextArea fx:id="øvelseMedApparatBeskrivelse" layoutX="216.0" layoutY="151.0" prefHeight="152.0" prefWidth="167.0" promptText="Beskrivelse" />
-                        <Button fx:id="øvelseMedApparatButton" layoutX="268.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleØvelseMedApparat" text="Legg til" />
-                        <TextField fx:id="øvelseUtenApparatNavn" layoutX="412.0" layoutY="43.0" promptText="Øvelsenavn" />
-                        <TextField fx:id="øvelseUtenApparatGruppeNavn" layoutX="412.0" layoutY="78.0" promptText="Øvelsegruppenavn" />
-                        <TextArea fx:id="øvelseUtenApparatBeskrivelse" layoutX="412.0" layoutY="152.0" prefHeight="150.0" prefWidth="167.0" promptText="Beskrivelse" />
-                        <Button fx:id="øvelseUtenApparatButton" layoutX="463.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleØvelseUtenApparat" text="Legg til" />
-                        <Label alignment="CENTER" layoutX="29.0" layoutY="20.0" prefHeight="17.0" prefWidth="150.0" text="Øvelsegruppenavn" textAlignment="CENTER" />
-                        <TextField fx:id="øvelseGruppeNavn" layoutX="21.0" layoutY="43.0" promptText="Øvelsegruppenavn" />
-                        <Button fx:id="øvelseGruppeNavnButton" layoutX="72.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleØvelseGruppeNavn" text="Legg til" />
+                        <TextField fx:id="øvelseMedApparatNavn" layoutX="222.0" layoutY="121.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsenavn" />
+                        <Label alignment="CENTER" layoutX="231.0" layoutY="98.0" prefHeight="17.0" prefWidth="150.0" text="Øvelse m/apparat" textAlignment="CENTER" />
+                        <Label alignment="CENTER" layoutX="427.0" layoutY="98.0" prefHeight="17.0" prefWidth="148.0" text="Øvelse u/apparat" />
+                        <TextField fx:id="øvelseMedApparatApparatNavn" layoutX="222.0" layoutY="156.0" prefHeight="27.0" prefWidth="167.0" promptText="Apparatnavn" />
+                        <TextField fx:id="øvelseMedApparatGruppeNavn" layoutX="223.0" layoutY="191.0" prefHeight="27.0" prefWidth="167.0" promptText="Øvelsegruppenavn" />
+                        <TextArea fx:id="øvelseMedApparatBeskrivelse" layoutX="222.0" layoutY="229.0" prefHeight="152.0" prefWidth="167.0" promptText="Beskrivelse" />
+                        <Button fx:id="øvelseMedApparatButton" layoutX="274.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleØvelseMedApparat" text="Legg til" />
+                        <TextField fx:id="øvelseUtenApparatNavn" layoutX="418.0" layoutY="121.0" promptText="Øvelsenavn" />
+                        <TextField fx:id="øvelseUtenApparatGruppeNavn" layoutX="418.0" layoutY="156.0" promptText="Øvelsegruppenavn" />
+                        <TextArea fx:id="øvelseUtenApparatBeskrivelse" layoutX="418.0" layoutY="230.0" prefHeight="150.0" prefWidth="167.0" promptText="Beskrivelse" />
+                        <Button fx:id="øvelseUtenApparatButton" layoutX="469.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleØvelseUtenApparat" text="Legg til" />
+                        <Label alignment="CENTER" layoutX="35.0" layoutY="98.0" prefHeight="17.0" prefWidth="150.0" text="Øvelsegruppenavn" textAlignment="CENTER" />
+                        <TextField fx:id="øvelseGruppeNavn" layoutX="27.0" layoutY="121.0" promptText="Øvelsegruppenavn" />
+                        <Button fx:id="øvelseGruppeNavnButton" layoutX="78.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleØvelseGruppeNavn" text="Legg til" />
+                        <Label alignment="CENTER" layoutX="185.0" layoutY="29.0" prefHeight="28.0" prefWidth="240.0" text="Legg til øvelse">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
 					</content>
 				</Tab>
@@ -151,12 +156,17 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="apparatNavn" alignment="CENTER" layoutX="217.0" layoutY="50.0" promptText="Apparatnavn" />
-                        <TextArea fx:id="apparatBeskrivelse" layoutX="200.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse av apparat" />
-                        <Button fx:id="apparatButton" layoutX="243.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleApparat" text="Legg til apparat" />
+                        <TextField fx:id="apparatNavn" alignment="CENTER" layoutX="223.0" layoutY="103.0" promptText="Apparatnavn" />
+                        <TextArea fx:id="apparatBeskrivelse" layoutX="206.0" layoutY="145.0" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse av apparat" />
+                        <Button fx:id="apparatButton" layoutX="249.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleApparat" text="Legg til apparat" />
                         <Label fx:id="apparatOutput" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="8.0" prefHeight="31.0" prefWidth="564.0" textAlignment="CENTER">
                            <font>
                               <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="244.0" layoutY="39.0" text="Legg til apparat">
+                           <font>
+                              <Font size="17.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
@@ -166,7 +176,7 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="resultatloggTableView" layoutX="6.0" layoutY="106.0" prefHeight="406.0" prefWidth="600.0">
+                        <TableView fx:id="resultatloggTableView" layoutX="6.0" layoutY="129.0" prefHeight="406.0" prefWidth="600.0">
                           <columns>
                               <TableColumn fx:id="resultatloggTableViewTreningId" prefWidth="100.0" text="TreningID" />
                             <TableColumn fx:id="resultatloggTableViewØvelse" prefWidth="100.0" text="Øvelse" />
@@ -176,41 +186,62 @@
                               <TableColumn fx:id="resultatloggTableViewNotat" prefWidth="100.0" text="Notat" />
                           </columns>
                         </TableView>
-                        <ComboBox fx:id="resultatloggComboBox" layoutX="25.0" layoutY="39.0" prefWidth="150.0" promptText="Øvelse" />
-                        <TextField fx:id="resultatloggFra" layoutX="224.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
-                        <TextField fx:id="resultatloggTil" layoutX="358.0" layoutY="39.0" prefHeight="27.0" prefWidth="94.0" />
-                        <Label layoutX="257.0" layoutY="14.0" text="Fra">
+                        <ComboBox fx:id="resultatloggComboBox" layoutX="14.0" layoutY="68.0" prefWidth="150.0" promptText="Øvelse" />
+                        <Label layoutX="256.0" layoutY="47.0" text="Fra">
                            <font>
-                              <Font name="Arial" size="18.0" />
+                              <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="resultatLoggButton" layoutX="491.0" layoutY="39.0" mnemonicParsing="false" text="Finn resultat" />
-                        <Label layoutX="396.0" layoutY="14.0" text="Til">
+                        <Button fx:id="resultatLoggButton" layoutX="503.0" layoutY="68.0" mnemonicParsing="false" text="Finn resultat" />
+                        <Label layoutX="406.0" layoutY="47.0" text="Til">
                            <font>
-                              <Font name="Arial" size="18.0" />
+                              <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="resultatloggComboBoxOutput" layoutX="65.0" layoutY="80.0" opacity="0.0" text="Øvelse må velges" textFill="RED">
+                        <Label fx:id="resultatloggComboBoxOutput" layoutX="65.0" layoutY="105.0" opacity="0.0" text="Øvelse må velges" textFill="RED">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <Label fx:id="resultatloggFraOutput" layoutX="207.0" layoutY="80.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
+                        <Label fx:id="resultatloggFraOutput" layoutX="207.0" layoutY="105.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <Label fx:id="resultatloggTilOutput" layoutX="341.0" layoutY="80.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
+                        <Label fx:id="resultatloggTilOutput" layoutX="341.0" layoutY="105.0" opacity="0.0" text="(Datoformat: åååå-mm-dd)" textFill="RED">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
+                        <Label layoutX="265.0" layoutY="14.0" text="Resultatlogg">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="resultatloggTil" layoutX="352.0" layoutY="68.0" prefHeight="27.0" prefWidth="120.0" />
+                        <DatePicker fx:id="resultatloggFra" layoutX="205.0" layoutY="68.0" prefHeight="27.0" prefWidth="120.0" />
                      </children></AnchorPane>
 					</content>
 				</Tab>
             <Tab text="Treningsvarighet">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="238.0" layoutY="29.0" text="Treningsvarighet">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="treningsvarighetFra" layoutX="87.0" layoutY="110.0" promptText="Startdato" />
+                        <DatePicker fx:id="treningsvarighetTil" layoutX="314.0" layoutY="110.0" promptText="Sluttdato" />
+                        <Label layoutX="121.0" layoutY="59.0" text="Regn ut gjennomsnittlig varighet på treninger i oppgitt tidsintervall">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="treningsvarighetOutput" layoutX="82.0" layoutY="255.0" prefHeight="141.0" prefWidth="425.0" />
+                        <Button fx:id="treningsvarighetButton" layoutX="261.0" layoutY="162.0" mnemonicParsing="false" text="Regn ut" />
+                     </children></AnchorPane>
               </content>
             </Tab>
 			</tabs>
