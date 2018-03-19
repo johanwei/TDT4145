@@ -18,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -340,7 +339,6 @@ public class MainController extends Connector implements Initializable {
 		FinnResultatlogg(this.resultatloggComboBox, this.resultatloggFra, this.resultatloggTil, this.resultatloggComboBoxOutput, this.resultatloggFraOutput, this.resultatloggTilOutput);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void FinnResultatlogg(ComboBox<String> resultatloggComboBox, DatePicker resultatloggFra, DatePicker resultatloggTil, Label resultatloggComboBoxOutput, Label resultatloggFraOutput, Label resultatloggTilOutput) throws SQLException, ParseException{
 		resultatloggTableView.getItems().clear();
 		resultatloggTableViewTreningId.setCellValueFactory(new PropertyValueFactory<>("treningId"));

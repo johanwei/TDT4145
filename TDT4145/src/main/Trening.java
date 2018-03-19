@@ -14,9 +14,6 @@ import javafx.scene.control.TextField;
 
 public class Trening extends Connector {
 	
-	public Trening() {
-		Connector.connect();
-	}
 
 	public boolean leggInnTrening(DatePicker dato, TextField tidspunkt, TextField varighet, TextField personligForm, TextField prestasjon, Label datoOutput, Label tidspunktOutput, Label varighetOutput, Label personligFormOutput, Label prestasjonOutput, Label generalOutput) {
 		 int i = 0;

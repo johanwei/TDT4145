@@ -12,10 +12,6 @@ import javafx.scene.control.TextField;
 
 public class Ovelse extends Connector {
 
-	public Ovelse() {
-		Connector.connect();
-	}
-	//Test
 	
 	public void ovelseGruppe(TextField ovelseGruppeNavn) throws SQLException {
 		Statement stmt = conn.createStatement();
@@ -64,7 +60,6 @@ public class Ovelse extends Connector {
 	public boolean notExists(String table, String attribute, String name) throws SQLException {
 		String query = String.format("SELECT * FROM %s WHERE %s='%s'", table, attribute, name);
 		PreparedStatement stmt = Connector.conn.prepareStatement(query);
-		System.out.println(query);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			return false;

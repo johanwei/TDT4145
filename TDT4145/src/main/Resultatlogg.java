@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.control.DatePicker;
@@ -14,13 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 public class Resultatlogg extends Connector {
 	
-	public Resultatlogg() {
-		Connector.connect();
-	}
 	
 	public List<String> getOvelser() {
 		List <String> ovelseListe = new ArrayList<String>();

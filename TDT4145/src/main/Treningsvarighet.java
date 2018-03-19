@@ -12,9 +12,6 @@ import javafx.scene.control.TextArea;
 
 public class Treningsvarighet extends Connector{
 	
-	public Treningsvarighet() {
-		Connector.connect();
-	}
 	
 	public void calculateTreningsVarighet(DatePicker treningsvarighetFra, DatePicker treningsvarighetTil, TextArea treningsvarighetOutput) throws SQLException {
 		treningsvarighetOutput.setText("");
